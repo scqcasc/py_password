@@ -1,28 +1,32 @@
 import random
+import string
 
 class Password:
     '''Generates a password of a specified length from all available ASCII characters'''
     def __init__(self, length: int) -> None:
         self.length = length
-        self.special_chars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '[', '}', ']', '|', ';', ':', '<', ',', '>', '.', '?', '/']
-        self.numbers = []
-        self.alphaslc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-        self.alphasuc = []
-        for letter in self.alphaslc:
-            self.alphasuc.append(letter.upper())
-        for n in range(0, 10):
-            self.numbers.append(str(n))
+        self.special_chars = string.punctuation
+        self.numbers = string.digits
+        self.alphaslc = string.ascii_lowercase
+        self.alphasuc = string.ascii_uppercase
         self.all_chars = self.special_chars + self.numbers + self.alphaslc + self.alphasuc
-
-    def select_char(self) -> str:
-        return self.all_chars[random.randint(0, len(self.all_chars) - 1)]
+    
+    def check_in_list(self, password, list_to_check) -> bool:
+        '''Make sure that at least one character is in the list to check'''
+        for letter in password:
+            if letter in list_to_check:
+                return True
+        return False
     
     def get(self) -> str:
         '''Returns the password string'''
-        password = []
-        for x in range(1, self.length + 1):
-            password.append(self.select_char())
+        ready = False
+        while not ready:
+            password = random.sample(self.all_chars, self.length)
+            # make sure there is at least one UC letter
+            ready = self.check_in_list(password=password, list_to_check=self.alphasuc)
         return ''.join(password)
+
 
 if __name__ == '__main__':
     p = Password(length=15)

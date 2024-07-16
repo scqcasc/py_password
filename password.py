@@ -21,21 +21,14 @@ class Password:
     def get(self) -> str:
         '''Returns the password string'''
         ready = False
+        checks = [self.alphaslc, self.alphasuc, self.special_chars, self.numbers]
         while not ready:
             password = random.sample(self.all_chars, self.length)
-            # make sure there is at least one UC letter
-            ready = self.check_in_list(password=password, list_to_check=self.alphasuc)
-            if not ready:
-                continue
-            ready = self.check_in_list(password=password, list_to_check=self.numbers)
-            if not ready:
-                continue
-            ready = self.check_in_list(password=password, list_to_check=self.alphaslc)
-            if not ready:
-                continue
-            ready = self.check_in_list(password=password, list_to_check=self.special_chars)
-            if not ready:
-                continue
+            # make sure there is at least one of each of the checks
+            for check in checks:
+                ready = self.check_in_list(password=password, list_to_check=list(check))
+                if not ready:
+                    break
         return ''.join(password)
 
 

@@ -1,5 +1,5 @@
 # py_password
-Generates a secure password
+Generates a strong password
 
 ## Usage
 $ python main.py [--length # | -l #]

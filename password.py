@@ -25,6 +25,17 @@ class Password:
             password = random.sample(self.all_chars, self.length)
             # make sure there is at least one UC letter
             ready = self.check_in_list(password=password, list_to_check=self.alphasuc)
+            if not ready:
+                continue
+            ready = self.check_in_list(password=password, list_to_check=self.numbers)
+            if not ready:
+                continue
+            ready = self.check_in_list(password=password, list_to_check=self.alphaslc)
+            if not ready:
+                continue
+            ready = self.check_in_list(password=password, list_to_check=self.special_chars)
+            if not ready:
+                continue
         return ''.join(password)
 
 

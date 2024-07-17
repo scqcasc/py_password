@@ -1,9 +1,10 @@
 import random
 import string
+import operator
 
 class Password:
     '''Generates a password of a specified length from all available ASCII characters'''
-    def __init__(self, length: int) -> None:
+    def __init__(self, length: int = 8) -> None:
         self.length = length
         self.special_chars = string.punctuation
         self.numbers = string.digits
@@ -15,6 +16,13 @@ class Password:
         random.shuffle(ac)
         self.all_chars = ''.join(ac)
         
+    length = property(operator.attrgetter('_length'))
+
+    @length.setter
+    def length(self, v):
+        if not (v > 3): raise Exception("Length must be between 4 and 94")
+        if not (v < 95): raise Exception("Length must be between 4 and 94")
+        self._length = v
     
     def check_in_list(self, password, list_to_check) -> bool:
         '''Make sure that at least one character is in the list to check'''
@@ -38,5 +46,5 @@ class Password:
 
 
 if __name__ == '__main__':
-    p = Password(length=15)
+    p = Password(length=12)
     print(p.get())

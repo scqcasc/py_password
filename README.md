@@ -9,7 +9,7 @@ Use the --length or -l to define the password legnth.  If unset the length will 
 The password is guarenteed to have at least 1 of the following characters:
 
 * lower case alpha (a-z)
-* upper case alphs (A-Z)
+* upper case alpha (A-Z)
 * numeric (0-9)
 * special character (!@#$%^&*{}[],.?:;)
 

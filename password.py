@@ -12,7 +12,6 @@ class Password:
         self.all_chars = self.special_chars + self.numbers + self.alphaslc + self.alphasuc
         # shuffle the deck a little
         ac = list(self.all_chars)
-        print(len(ac))
         random.shuffle(ac)
         self.all_chars = ''.join(ac)
         

@@ -10,6 +10,11 @@ class Password:
         self.alphaslc = string.ascii_lowercase
         self.alphasuc = string.ascii_uppercase
         self.all_chars = self.special_chars + self.numbers + self.alphaslc + self.alphasuc
+        print(self.all_chars)
+        ac = list(self.all_chars)
+        random.shuffle(ac)
+        self.all_chars = ''.join(ac)
+        print(self.all_chars)
     
     def check_in_list(self, password, list_to_check) -> bool:
         '''Make sure that at least one character is in the list to check'''

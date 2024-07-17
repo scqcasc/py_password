@@ -4,7 +4,7 @@ Generates a strong password
 ## Usage
 $ python main.py [--length # | -l #]
 
-Use the --length or -l to define the password legnth.  If unset the length will be 8 characters.  The minimum the tool allows is 4 characters.
+Use the --length or -l to define the password legnth.  If unset the length will be 8 characters.  The minimum the tool allows is 4 characters and the max length is 94.
 
 The password is guarenteed to have at least 1 of the following characters:
 
